@@ -1,0 +1,16 @@
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /home/adesp/vps-nginx/sites:/etc/nginx/conf.d:ro
+      - /home/adesp/.acme.sh/votacao.festivalculturaldeparacatu.com.br_ecc:/etc/nginx/certs:ro
+      - /home/adesp/vps-nginx/certbot:/var/www/certbot:ro
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

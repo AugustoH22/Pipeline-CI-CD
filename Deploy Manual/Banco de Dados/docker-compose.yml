@@ -1,0 +1,18 @@
+services:
+  adesp_postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: db
+    volumes:
+      - adesp_postgres_data:/var/lib/postgresql/data
+    networks:
+      - proxy
+
+volumes:
+  adesp_postgres_data:
+
+networks:
+  proxy:
+    external: true

@@ -1,0 +1,25 @@
+services:
+
+  api:
+    image: api:8.0
+    restart: always
+    expose:
+      - "8080" 
+    env_file:
+      - ./API-ADESP/.env  
+    networks:
+      - proxy
+
+  spa:
+    image: spa:8.0
+    restart: always
+    expose:
+      - "80"
+    depends_on:
+      - api
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

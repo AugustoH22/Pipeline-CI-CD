@@ -1,0 +1,25 @@
+services:
+
+  api:
+    image: harbor.festivalculturalptu.shop:8443/tcc/api:latest
+    restart: always
+    expose:
+      - "8086" 
+    env_file:
+      - ./API-ADESP/.env  
+    networks:
+      - n8n-net
+
+  spa:
+    image: harbor.festivalculturalptu.shop:8443/tcc/spa:latest
+    restart: always
+    expose:
+      - "80"
+    depends_on:
+      - api
+    networks:
+      - n8n-net
+
+networks:
+  n8n-net:
+    external: true
